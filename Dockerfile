@@ -6,4 +6,4 @@ RUN git clone https://github.com/freifunk-gluon/gluon /gluon && cd /gluon && git
 RUN cd /gluon && git clone https://github.com/MTRNord/nord-site site && cd /gluon/site && git checkout ffslfl
 RUN cp /gluon/site/build.sh /gluon/build.sh && chmod +x /gluon/build.sh
 
-CMD "ls -la /gluon"
+CMD "ls -la /"
