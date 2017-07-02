@@ -1,7 +1,7 @@
 require 'busted.runner'()
 local validJson = require "tests/validJson"
 local config = os.getenv('GLUON_SITEDIR')
-function jsonLint(json){
+function jsonLint (json)
       local file = io.open("/tmp/config.json", "a")
       io.write(json)
       io.close(file)
@@ -9,7 +9,7 @@ function jsonLint(json){
       local result = handle:read("*all")
       handle:close()
       print(result)
-}
+end
 
 describe("Test config", function()
       it("should be  a valid config", function()
