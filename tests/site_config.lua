@@ -22,6 +22,6 @@ describe("Test config", function()
             end
      end)
 end)
-local file = assert(io.open("/tmp/config.json", "w"))
+local file = assert(io.open(config .. "/config.json", "w"))
 file:write(json, "\r\n")
 io.close(file)
