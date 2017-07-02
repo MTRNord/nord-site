@@ -13,7 +13,6 @@ describe("Test config", function()
                   local result = handle:read("*all")
                   handle:close()
                   print(result)
-                  assert.is_true(true)
             else
                 local errfn = function()
                   error("Invalid Config: ")
