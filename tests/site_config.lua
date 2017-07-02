@@ -1,5 +1,5 @@
 require 'busted.runner'()
-local validJson = require "amussey.com/lua-json-validator/validJson"
+local validJson = require "validJson"
 local config = os.getenv('GLUON_SITEDIR')
 
 describe("Test config", function()
