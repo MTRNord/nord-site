@@ -6,6 +6,6 @@ local function loader()
 end
 
 -- setfenv doesn't work with Lua 5.2 anymore, but we're using 5.1
-local json = assert(load(coroutine.wrap(loader), 'site.conf')), {}
+local json = setfenv(assert(load(coroutine.wrap(loader), 'site.conf')), {})()
 print(json)
-return setfenv(json)()
+return json
