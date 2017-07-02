@@ -23,6 +23,6 @@ describe("Test config", function()
             end
      end)
 end)
-local file = io.open("/tmp/config.json", "a")
+local file = assert(io.open("/tmp/config.json", "w"))
 io.write(io.open(config .. '/site.conf'):read('*a'))
 io.close(file)
