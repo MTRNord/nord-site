@@ -4,7 +4,9 @@ local config = os.getenv('GLUON_SITEDIR')
 
 describe("Test config", function()
       it("should be  a valid config", function()
-            if validJson(io.open(config .. '/site.conf'):read('*a')) then
+            local json = io.open(config .. '/site.conf'):read('*a')
+            print(json)
+            if validJson(json) then
                 assert.is_true(true)
             else
                 local errfn = function()
