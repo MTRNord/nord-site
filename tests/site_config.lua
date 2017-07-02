@@ -1,18 +1,21 @@
 require 'busted.runner'()
 local validJson = require "tests/validJson"
 local config = os.getenv('GLUON_SITEDIR')
+function jsonLint(json){
+      local file = io.open("/tmp/config.json", "a")
+      io.write(json)
+      io.close(file)
+      local handle = assert(io.popen("jsonlint /tmp/config.json -t [    ]"))
+      local result = handle:read("*all")
+      handle:close()
+      print(result)
+}
 
 describe("Test config", function()
       it("should be  a valid config", function()
             local json = io.open(config .. '/site.conf'):read('*a')
             if validJson(json) then
-                  local file = io.open("/tmp/config.json", "a")
-                  io.write(json)
-                  io.close(file)
-                  local handle = assert(io.popen("jsonlint /tmp/config.json -t [    ]"))
-                  local result = handle:read("*all")
-                  handle:close()
-                  print(result)
+                  jsonLint(json)
             else
                 local errfn = function()
                   error("Invalid Config: ")
