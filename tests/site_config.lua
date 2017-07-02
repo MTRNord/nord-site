@@ -11,7 +11,7 @@ describe("Test config", function()
                   io.close(file)
                   local handle = io.popen("jsonlint /tmp/config.json -t [    ] -c")
                   local result = handle:read("*a")
-                  print(result)
+                  print(handle)
                   handle:close()
                   assert.is_true(true)
             else
