@@ -1,5 +1,5 @@
 require 'busted.runner'()
-local validJson = require "./validJson"
+local validJson = require "tests/validJson"
 local config = os.getenv('GLUON_SITEDIR')
 
 describe("Test config", function()
