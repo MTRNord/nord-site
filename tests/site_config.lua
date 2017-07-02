@@ -1,11 +1,24 @@
+require 'busted.runner'()
+local validJson = require "amussey.com/lua-json-validator/validJson"
 local config = os.getenv('GLUON_SITEDIR')
 
-local function loader()
-   coroutine.yield('return ')
-   coroutine.yield(io.open(config .. '/site.conf'):read('*a'))
-end
+describe("Test config", function()
+      it("should be  a valid config", function()
+            if validJson(io.open(config .. '/site.conf'):read('*a')) then
+                assert.is_true(true)
+            else
+                local errfn = function()
+                  error("Invalid Config: ")
+                end
 
--- setfenv doesn't work with Lua 5.2 anymore, but we're using 5.1
-local json = setfenv(assert(load(coroutine.wrap(loader), 'site.conf')), {})()
-print(json)
-return json
+                assert.has_error(errfn, "Invalid Config: ")
+               local function loader()
+                  coroutine.yield('return ')
+                  coroutine.yield(io.open(config .. '/site.conf'):read('*a'))
+               end
+
+               -- setfenv doesn't work with Lua 5.2 anymore, but we're using 5.1
+               setfenv(assert(load(coroutine.wrap(loader), 'site.conf')), {})()
+            end
+     end)
+end)
