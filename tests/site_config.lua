@@ -1,10 +1,9 @@
 require 'busted.runner'()
 local validJson = require "tests/validJson"
 local config = os.getenv('GLUON_SITEDIR')
-
+local json = io.open(config .. '/site.conf'):read('*a')
 describe("Test config", function()
       it("should be  a valid config", function()
-            local json = io.open(config .. '/site.conf'):read('*a')
             if validJson(json) then
                   assert.True(true)
             else
@@ -24,5 +23,5 @@ describe("Test config", function()
      end)
 end)
 local file = assert(io.open("/tmp/config.json", "w"))
-io.write(io.open(config .. '/site.conf'):read('*a'))
+ifile:write(json, "\r\n")
 io.close(file)
