@@ -1,4 +1,4 @@
-language: bash
+language: node_js
 
 addons:
   apt:
@@ -10,6 +10,7 @@ install:
   - eval $(luarocks path --bin)
   - luarocks install --local lua-cjson
   - luarocks install --local busted
+  - npm install jsonlint -g
 
 script:
   - bash tests/validate_site.sh
